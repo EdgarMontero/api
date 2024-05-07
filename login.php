@@ -3,7 +3,7 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 
 // Conectar a la base de datos
-include 'db.php';
+$conn = new mysqli('localhost', 'cfgs', 'ira491', 'proyecto');
 
 // Verificar conexión
 if ($conn->connect_error) {
