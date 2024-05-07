@@ -18,7 +18,7 @@ if (empty($dni_paciente) || empty($nombre) || empty($fecha_nacimiento) || empty(
 
 try {
     // Conexión a la base de datos
-    $conn = new mysqli('localhost', 'root', '', 'proyecto');
+    include 'db.php';
 
     // Primero verificar si ya existe un paciente con el mismo dni_paciente y user_id
     $query = "SELECT COUNT(*) FROM pacientes WHERE user_id = ?";

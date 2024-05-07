@@ -12,7 +12,7 @@ if (empty($dni_paciente)) {
 
 try {
     // Conexión a la base de datos
-    $conn = new mysqli('localhost', 'root', '', 'proyecto');
+    include 'db.php';
 
     // Buscar información del paciente usando el ID de usuario
     $stmt = $conn->prepare("SELECT dni_paciente, nombre, user_id, fecha_nacimiento, direccion, telefono FROM pacientes WHERE dni_paciente = ?");

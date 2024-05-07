@@ -2,7 +2,7 @@
 
 // Asumiendo que la petición POST incluye los datos a actualizar
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accion']) && $_POST['accion'] == 'actualizar') {
-    $conn = new mysqli('localhost', 'root', '', 'proyecto');
+    include 'db.php';
 
     $dni_paciente = $_POST['dni_paciente'];
     $nombre = $_POST['nombre'];
