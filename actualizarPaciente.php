@@ -1,7 +1,5 @@
 <?php
 
-// Asumiendo que la petición POST incluye los datos a actualizar
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accion']) && $_POST['accion'] == 'actualizar') {
     include 'db.php';
 
     $dni_paciente = $_POST['dni_paciente'];
@@ -26,4 +24,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accion']) && $_POST['a
         $stmt->close();
         $conn->close();
     }
-}

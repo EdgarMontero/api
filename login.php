@@ -2,15 +2,12 @@
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-// Conectar a la base de datos
-$conn = new mysqli('localhost', 'cfgs', 'ira491', 'proyecto');
+$conn = new mysqli('localhost', 'root', '', 'proyecto');
 
-// Verificar conexión
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Preparar consulta SQL para obtener la contraseña hasheada y el dni_medico
 $stmt = $conn->prepare("SELECT users.password, medicos.dni_medico FROM users 
                         JOIN medicos ON users.id_user = medicos.user_id 
                         WHERE name = ?");
@@ -30,4 +27,3 @@ if ($row = $result->fetch_assoc()) {
 
 $stmt->close();
 $conn->close();
-?>

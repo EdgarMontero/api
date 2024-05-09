@@ -1,7 +1,6 @@
 <?php
 include 'db.php';
 
-// Verificar conexión
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -11,7 +10,7 @@ $result = $conn->query($sql);
 $users = array();
 
 if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
+    while ($row = $result->fetch_assoc()) {
         $users[] = $row;
     }
     echo json_encode($users);
@@ -19,4 +18,3 @@ if ($result->num_rows > 0) {
     echo json_encode([]);
 }
 $conn->close();
-?>
