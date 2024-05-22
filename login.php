@@ -1,13 +1,9 @@
 <?php
+include 'db.php';
+
 $username = $_POST['username'];
 $password = $_POST['password'];
 $type = $_POST['type']; 
-
-$conn = new mysqli('localhost', 'root', '', 'proyecto');
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
 if ($type == 'medico') {
     $stmt = $conn->prepare("SELECT users.password, medicos.dni_medico FROM users 
