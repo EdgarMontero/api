@@ -30,9 +30,9 @@ $result = $stmt->get_result();
 if ($row = $result->fetch_assoc()) {
     if (password_verify($password, $row['password'])) {
         if ($type == 'medico') {
-            echo "Login success, Medico DNI: " . $row['dni_medico'];
+            echo "Login success," . $row['dni_medico'];
         } elseif ($type == 'paciente') {
-            echo "Login success, Paciente DNI: " . $row['dni_paciente'];
+            echo "Login success," . $row['dni_paciente'];
         }
     } else {
         echo "Login failed";
@@ -43,4 +43,4 @@ if ($row = $result->fetch_assoc()) {
 
 $stmt->close();
 $conn->close();
-
+?>
