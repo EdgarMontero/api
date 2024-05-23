@@ -5,7 +5,7 @@ $dni_medico = $_POST['dni_medico'];
 $fecha_inicio = isset($_POST['fecha_inicio']) ? $_POST['fecha_inicio'] : '';
 $fecha_fin = isset($_POST['fecha_fin']) ? $_POST['fecha_fin'] : '';
 
-$query = "SELECT id_consulta, id_medico, id_paciente, tipo_consulta, descripcion_consulta, fecha_consulta FROM consultas WHERE id_medico = ?";
+$query = "SELECT id_consulta, id_medico, id_paciente, tipo_consulta, descripcion_consulta, fecha_consulta, estado_consulta FROM consultas WHERE id_medico = ?";
 
 if (!empty($fecha_inicio) && !empty($fecha_fin)) {
     $query .= " AND fecha_consulta BETWEEN ? AND ?";

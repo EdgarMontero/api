@@ -8,11 +8,13 @@ $type = $_POST['type'];
 if ($type == 'medico') {
     $stmt = $conn->prepare("SELECT users.password, medicos.dni_medico FROM users 
                             JOIN medicos ON users.id_user = medicos.user_id 
-                            WHERE name = ?");
+                            WHERE users.name = ?");
 } elseif ($type == 'paciente') {
-    $stmt = $conn->prepare("SELECT users.password, pacientes.dni_paciente FROM users 
+    $stmt = $conn->prepare("SELECT users.password, pacientes.dni_paciente, relacion_medico_paciente.id_medico 
+                            FROM users 
                             JOIN pacientes ON users.id_user = pacientes.user_id 
-                            WHERE name = ?");
+                            JOIN relacion_medico_paciente ON pacientes.dni_paciente = relacion_medico_paciente.id_paciente 
+                            WHERE users.name = ?");
 } else {
     echo "Invalid type";
     $conn->close();
@@ -28,7 +30,7 @@ if ($row = $result->fetch_assoc()) {
         if ($type == 'medico') {
             echo "Login success," . $row['dni_medico'];
         } elseif ($type == 'paciente') {
-            echo "Login success," . $row['dni_paciente'];
+            echo "Login success," . $row['dni_paciente'] . "," . $row['id_medico'];
         }
     } else {
         echo "Login failed";
