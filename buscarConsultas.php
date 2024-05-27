@@ -3,7 +3,7 @@
 include 'db.php';
 
 $dni = $_POST['dni'];
-$tipo_dni = $_POST['tipo_dni']; // 'paciente' o 'medico'
+$tipo_dni = $_POST['tipo_dni'];
 $fecha_inicio = isset($_POST['fecha_inicio']) ? $_POST['fecha_inicio'] : '';
 $fecha_fin = isset($_POST['fecha_fin']) ? $_POST['fecha_fin'] : '';
 $estado_consulta = isset($_POST['estado_consulta']) ? $_POST['estado_consulta'] : '';

@@ -1,5 +1,7 @@
 <?php
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
+include 'db.php';
+
 
 $dni_paciente = $_POST['dni_paciente'] ?? '';
 
@@ -9,7 +11,6 @@ if (empty($dni_paciente)) {
 }
 
 try {
-    include 'db.php';
 
     $stmt = $conn->prepare("SELECT dni_paciente, nombre, user_id, fecha_nacimiento, direccion, telefono FROM pacientes WHERE dni_paciente = ?");
     $stmt->bind_param("s", $dni_paciente);

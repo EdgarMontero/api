@@ -1,7 +1,8 @@
 <?php
 
-header('Content-Type: application/json');  // Establecer el tipo de contenido como JSON
 include 'db.php';
+
+header('Content-Type: application/json');  
 
 $name = $_POST['name'] ?? '';
 $email = $_POST['email'] ?? '';
@@ -36,7 +37,7 @@ try {
     $stmt = $conn->prepare("INSERT INTO users (name, password, email) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $name, $passwordHash, $email);
     if ($stmt->execute()) {
-        $user_id = $conn->insert_id;  // Obtener el ID del nuevo usuario registrado
+        $user_id = $conn->insert_id;  
         echo json_encode(['message' => 'Usuario registrado exitosamente.', 'user_id' => $user_id]);
     } else {
         echo json_encode(['message' => 'Error al registrar el usuario: ' . $stmt->error]);
@@ -44,5 +45,3 @@ try {
 } catch (Exception $e) {
     echo json_encode(['message' => "Error al registrar el usuario: " . $e->getMessage()]);
 }
-
-?>

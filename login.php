@@ -1,4 +1,5 @@
 <?php
+
 include 'db.php';
 
 $username = $_POST['username'];
@@ -41,4 +42,4 @@ if ($row = $result->fetch_assoc()) {
 
 $stmt->close();
 $conn->close();
-?>
+

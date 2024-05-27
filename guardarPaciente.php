@@ -1,5 +1,6 @@
 <?php
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
+include 'db.php';
 
 $dni_paciente = $_POST['dni_paciente'] ?? null;
 $nombre = $_POST['nombre'] ?? null;
@@ -14,7 +15,6 @@ if (empty($dni_paciente) || empty($nombre) || empty($fecha_nacimiento) || empty(
 }
 
 try {
-    include 'db.php';
 
     $query = "SELECT COUNT(*) FROM pacientes WHERE user_id = ?";
     $stmt = $conn->prepare($query);
