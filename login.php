@@ -10,10 +10,10 @@ if ($type == 'medico') {
                             JOIN medicos ON users.id_user = medicos.user_id 
                             WHERE users.name = ?");
 } elseif ($type == 'paciente') {
-    $stmt = $conn->prepare("SELECT users.password, pacientes.dni_paciente, relacion_medico_paciente.id_medico 
+    $stmt = $conn->prepare("SELECT users.password, pacientes.dni_paciente, relacion_medico_pacientes.id_medico 
                             FROM users 
                             JOIN pacientes ON users.id_user = pacientes.user_id 
-                            JOIN relacion_medico_paciente ON pacientes.dni_paciente = relacion_medico_paciente.id_paciente 
+                            JOIN relacion_medico_pacientes ON pacientes.dni_paciente = relacion_medico_pacientes.id_paciente 
                             WHERE users.name = ?");
 } else {
     echo "Invalid type";
