@@ -1,7 +1,7 @@
 <?php
 
 include 'db.php';
-
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 $dni_medico = $_POST['dni_medico'] ?? '';
 

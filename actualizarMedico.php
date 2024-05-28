@@ -1,12 +1,14 @@
 <?php
 
 include 'db.php';
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 $dni_medico = $_POST['dni_medico'];
 $nombre = $_POST['nombre'];
 $especialidad = $_POST['especialidad'];
 
 try {
+    
     $stmt = $conn->prepare("UPDATE medicos SET nombre = ?, especialidad = ? WHERE dni_medico = ?");
     $stmt->bind_param("sss", $nombre, $especialidad, $dni_medico);
     $stmt->execute();
