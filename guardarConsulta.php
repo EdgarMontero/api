@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($dni_medico) || empty($dni_paciente) || empty($tipo_consulta) || empty($descripcion) || empty($fecha) || empty($estado_consulta)) {
         echo "Todos los campos son obligatorios.";
     } else {
-        $stmt = $conn->prepare("INSERT INTO consultas (id_medico, id_paciente, tipo_consulta, descripcion_consulta, fecha_consulta, estado_consulta) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO consultas (id_medico, id_paciente, tipo_consulta, descripcion_consulta, fecha_consulta, estado_consulta, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, NOW(), NOW())");
         $stmt->bind_param("ssssss", $dni_medico, $dni_paciente, $tipo_consulta, $descripcion, $fecha, $estado_consulta);
 
         if ($stmt->execute()) {

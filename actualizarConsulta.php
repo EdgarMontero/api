@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($id_consulta) || empty($tipo_consulta) || empty($descripcion) || empty($fecha) || empty($estado_consulta)) {
         echo json_encode(["success" => false, "message" => "Todos los campos son obligatorios."]);
     } else {
-        $stmt = $conn->prepare("UPDATE consultas SET tipo_consulta = ?, descripcion_consulta = ?, fecha_consulta = ?, estado_consulta = ? WHERE id_consulta = ?");
+        $stmt = $conn->prepare("UPDATE consultas SET tipo_consulta = ?, descripcion_consulta = ?, fecha_consulta = ?, estado_consulta = ? , updated_at = NOW() WHERE id_consulta = ?");
         $stmt->bind_param("sssss", $tipo_consulta, $descripcion, $fecha, $estado_consulta, $id_consulta);
 
         if ($stmt->execute()) {

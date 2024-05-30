@@ -10,7 +10,7 @@ $direccion = $_POST['direccion'];
 $telefono = $_POST['telefono'];
 
 try {
-    $stmt = $conn->prepare("UPDATE pacientes SET nombre = ?, fecha_nacimiento = ?, direccion = ?, telefono = ? WHERE dni_paciente = ?");
+    $stmt = $conn->prepare("UPDATE pacientes SET nombre = ?, fecha_nacimiento = ?, direccion = ?, telefono = ?, updated_at = NOW() WHERE dni_paciente = ?");
     $stmt->bind_param("sssss", $nombre, $fecha_nacimiento, $direccion, $telefono, $dni_paciente);
     $stmt->execute();
 

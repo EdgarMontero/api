@@ -26,11 +26,11 @@ try {
     $stmt->close();
 
     if ($exists > 0) {
-        echo "Error al guardar el paciente: Ya existe un registro con el mismo DNI y usuario.";
+        echo "Error al guardar el paciente: Ya existe un registro con el mismo DNI o usuario.";
         exit;
     }
 
-    $stmt = $conn->prepare("INSERT INTO pacientes (dni_paciente, user_id, nombre, fecha_nacimiento, direccion, telefono) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO pacientes (dni_paciente, user_id, nombre, fecha_nacimiento, direccion, telefono, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, NOW(), NOW())");
     $stmt->bind_param("sissss", $dni_paciente, $user_id, $nombre, $fecha_nacimiento, $direccion, $telefono);
     $stmt->execute();
     echo "success: Paciente guardado con éxito";
@@ -44,3 +44,4 @@ try {
         $conn->close();
     }
 }
+

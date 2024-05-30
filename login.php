@@ -4,7 +4,7 @@ include 'db.php';
 
 $username = $_POST['username'];
 $password = $_POST['password'];
-$type = $_POST['type']; 
+$type = $_POST['type'];
 
 if ($type == 'medico') {
     $stmt = $conn->prepare("SELECT users.password, medicos.dni_medico FROM users 
@@ -14,7 +14,7 @@ if ($type == 'medico') {
     $stmt = $conn->prepare("SELECT users.password, pacientes.dni_paciente, relacion_medico_pacientes.id_medico 
                             FROM users 
                             JOIN pacientes ON users.id_user = pacientes.user_id 
-                            JOIN relacion_medico_pacientes ON pacientes.dni_paciente = relacion_medico_pacientes.id_paciente 
+                            LEFT JOIN relacion_medico_pacientes ON pacientes.dni_paciente = relacion_medico_pacientes.id_paciente 
                             WHERE users.name = ?");
 } else {
     echo "Invalid type";
@@ -31,7 +31,9 @@ if ($row = $result->fetch_assoc()) {
         if ($type == 'medico') {
             echo "Login success," . $row['dni_medico'];
         } elseif ($type == 'paciente') {
-            echo "Login success," . $row['dni_paciente'] . "," . $row['id_medico'];
+            // Si el paciente no tiene relación con ningún médico, el campo id_medico será NULL
+            $id_medico = isset($row['id_medico']) ? $row['id_medico'] : 'none';
+            echo "Login success," . $row['dni_paciente'] . "," . $id_medico;
         }
     } else {
         echo "Login failed";
@@ -42,4 +44,3 @@ if ($row = $result->fetch_assoc()) {
 
 $stmt->close();
 $conn->close();
-
